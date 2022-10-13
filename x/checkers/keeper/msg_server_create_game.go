@@ -32,10 +32,18 @@ func (k msgServer) CreateGame(goCtx context.Context, msg *types.MsgCreateGame) (
 		return nil, err
 	}
 
-	// TODO: Handling the message
 	k.Keeper.SetStoredGame(ctx, storedGame)
 	systemInfo.NextId++
 	k.Keeper.SetSystemInfo(ctx, systemInfo)
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.GameCreatedEventType,
+			sdk.NewAttribute(types.GameCreatedEventCreator, msg.Creator),
+			sdk.NewAttribute(types.GameCreatedEventGameIndex, newIndex),
+			sdk.NewAttribute(types.GameCreatedEventBlack, msg.Black),
+			sdk.NewAttribute(types.GameCreatedEventRed, msg.Red),
+		),
+	)
 
 	return &types.MsgCreateGameResponse{
 		GameIndex: newIndex,
