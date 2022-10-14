@@ -22,6 +22,8 @@ export interface CheckersMsgPlayMoveResponse {
   winner?: string;
 }
 
+export type CheckersMsgRejectGameResponse = object;
+
 /**
  * Params defines the parameters for the module.
  */
@@ -64,11 +66,18 @@ export interface CheckersStoredGame {
   turn?: string;
   black?: string;
   red?: string;
+
+  /** @format uint64 */
+  moveCount?: string;
+  beforeIndex?: string;
+  afterIndex?: string;
 }
 
 export interface CheckersSystemInfo {
   /** @format uint64 */
   nextId?: string;
+  fifoHeadIndex?: string;
+  fifoTailIndex?: string;
 }
 
 export interface ProtobufAny {

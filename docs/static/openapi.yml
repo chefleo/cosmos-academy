@@ -65,6 +65,13 @@ paths:
                       type: string
                     red:
                       type: string
+                    moveCount:
+                      type: string
+                      format: uint64
+                    beforeIndex:
+                      type: string
+                    afterIndex:
+                      type: string
               pagination:
                 type: object
                 properties:
@@ -192,6 +199,13 @@ paths:
                     type: string
                   red:
                     type: string
+                  moveCount:
+                    type: string
+                    format: uint64
+                  beforeIndex:
+                    type: string
+                  afterIndex:
+                    type: string
         default:
           description: An unexpected error response.
           schema:
@@ -233,6 +247,10 @@ paths:
                   nextId:
                     type: string
                     format: uint64
+                  fifoHeadIndex:
+                    type: string
+                  fifoTailIndex:
+                    type: string
         default:
           description: An unexpected error response.
           schema:
@@ -30688,6 +30706,19 @@ definitions:
     properties:
       gameIndex:
         type: string
+  b9lab.checkers.checkers.MsgPlayMoveResponse:
+    type: object
+    properties:
+      capturedX:
+        type: integer
+        format: int32
+      capturedY:
+        type: integer
+        format: int32
+      winner:
+        type: string
+  b9lab.checkers.checkers.MsgRejectGameResponse:
+    type: object
   b9lab.checkers.checkers.Params:
     type: object
     description: Params defines the parameters for the module.
@@ -30708,6 +30739,13 @@ definitions:
             black:
               type: string
             red:
+              type: string
+            moveCount:
+              type: string
+              format: uint64
+            beforeIndex:
+              type: string
+            afterIndex:
               type: string
       pagination:
         type: object
@@ -30750,6 +30788,13 @@ definitions:
             type: string
           red:
             type: string
+          moveCount:
+            type: string
+            format: uint64
+          beforeIndex:
+            type: string
+          afterIndex:
+            type: string
   b9lab.checkers.checkers.QueryGetSystemInfoResponse:
     type: object
     properties:
@@ -30759,6 +30804,10 @@ definitions:
           nextId:
             type: string
             format: uint64
+          fifoHeadIndex:
+            type: string
+          fifoTailIndex:
+            type: string
   b9lab.checkers.checkers.QueryParamsResponse:
     type: object
     properties:
@@ -30779,12 +30828,23 @@ definitions:
         type: string
       red:
         type: string
+      moveCount:
+        type: string
+        format: uint64
+      beforeIndex:
+        type: string
+      afterIndex:
+        type: string
   b9lab.checkers.checkers.SystemInfo:
     type: object
     properties:
       nextId:
         type: string
         format: uint64
+      fifoHeadIndex:
+        type: string
+      fifoTailIndex:
+        type: string
   cosmos.base.query.v1beta1.PageRequest:
     type: object
     properties:
