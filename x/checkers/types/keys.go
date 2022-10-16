@@ -70,3 +70,9 @@ const (
 const (
 	GameCreatedEventWager = "wager"
 )
+
+const (
+	CreateGameGas       = 15000
+	PlayMoveGas         = 1000
+	RejectGameRefundGas = 14000
+)
