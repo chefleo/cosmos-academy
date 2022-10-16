@@ -32,6 +32,10 @@ func (storedGame StoredGame) ParseGame() (game *rules.Game, err error) {
 	return board, nil
 }
 
+func (storedGame *StoredGame) GetWagerCoin() (wager sdk.Coin) {
+	return sdk.NewCoin(sdk.DefaultBondDenom, sdk.NewInt(int64(storedGame.Wager)))
+}
+
 func (storedGame StoredGame) Validate() (err error) {
 	_, err = storedGame.GetBlackAddress()
 	if err != nil {
